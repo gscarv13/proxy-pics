@@ -1,13 +1,14 @@
 import React from "react";
 
+
 import {
   BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
 
+import ProtectedRoutes from "./components/ProtectedRoutes.jsx";
 import NewOrder from "./views/NewOrder.jsx";
-
 import Home from "./views/Home.jsx";
 import Navigation from "./components/Navigation.jsx";
 import SignIn from "./views/SignIn.jsx";
@@ -20,11 +21,12 @@ const App = () => {
         <Navigation />
         <div className="container">
           <Routes>
-            <Route index element={<Home />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/new-order" element={<NewOrder />} />
-            <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/order/:id" element={<Order />} />
+            <Route index element={<SignIn />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path='/home' element={<Home />} />
+              <Route path="/new-order" element={<NewOrder />} />
+              <Route path="/order/:id" element={<Order />} />
+            </Route>
           </Routes>
         </div>
       </BrowserRouter>
