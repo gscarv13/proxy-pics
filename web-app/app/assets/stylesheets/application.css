@@ -13,3 +13,133 @@
  *= require_tree .
  *= require_self
  */
+
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ }
+
+ html, body {
+  width: 100vw;
+ }
+
+/* Home */
+.container {
+  padding: 0 5rem;
+}
+
+
+h1 {
+  text-align: center;
+}
+
+.hero-section {
+
+}
+
+.order-list-filters {
+  align-self: flex-start;
+  width: 50%;
+  margin-bottom: 3rem;
+}
+
+.order-list-filters button {
+  background-color: transparent;
+  border: 1px solid #ffa500;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+.order-list-filters button:hover {
+  cursor: pointer;
+}
+
+/* Navigation Bar*/
+.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 2px 3px 0 rgb(0 0 0 / 0.2);
+}
+
+.navigation-inner-container {
+  margin-left: 2rem;
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+}
+
+.navigation-inner-container a {
+  text-decoration: none;
+  font-size: 1.3rem;
+  color: black;
+}
+
+.navigation-inner-container a:hover {
+  color: chartreuse;
+}
+
+ /* OrderCard */
+.order-card {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0 3px 4px 0 rgb(0 0 0 / 0.1);
+}
+
+.order-card:hover {
+  box-shadow: 0 5px 6px 0 rgb(0 0 0 / 0.2);
+}
+
+.order-card span {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100%;
+  background-color: yellow;
+  margin-bottom: 1rem;
+}
+
+.order-card-content {
+  margin: 0 3rem;
+  flex: 1;
+}
+
+.order-card-content h3 {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+.order-card-link {
+  text-decoration: none;
+  background-color: #211c1e;
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-weight: bold;
+}
+
+.order-card-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-card-footer p {
+  font-size: 1.3rem;
+}
+
+/*  */
+.order-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}

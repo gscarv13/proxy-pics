@@ -1,0 +1,5 @@
+export const BASE_URL = 'http://localhost:3000'
+export const GET_ORDERS = '/requester/orders'
+export const GET_ASSIGNEES = '/assignees'
+export const GET_ORDER = '/requester/orders'
+export const POST_ORDER = '/requester/order'
