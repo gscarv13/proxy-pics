@@ -35,21 +35,35 @@ h1 {
   text-align: center;
 }
 
-.hero-section {
+.order-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
+.order-card-container h2 {
+  margin-bottom: 5rem;
 }
 
 .order-list-filters {
+  display: flex;
+  justify-content: space-between;
   align-self: flex-start;
-  width: 50%;
+  width: 100%;
   margin-bottom: 3rem;
 }
 
+.order-list-filters select {
+  margin-right: 1rem;
+}
+
 .order-list-filters button {
+  align-self: flex-end;
   background-color: transparent;
-  border: 1px solid #ffa500;
+  border: 1px solid black;
   border-radius: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 1rem;
   font-size: 1rem;
   margin-right: 1rem;
 }
@@ -137,9 +151,4 @@ h1 {
 }
 
 /*  */
-.order-card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
+

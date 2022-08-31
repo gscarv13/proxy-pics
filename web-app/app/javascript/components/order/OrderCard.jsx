@@ -1,10 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const statusColor = {
+  'Pending': '#f4b686',
+  'Completed': '#0aaef6'
+}
+
 const OrderCard = ({ order }) => {
+  const statusSpan = { backgroundColor: statusColor[order.status] }
 
   return <div className='order-card'>
-    <span></span>
+    <span style={statusSpan}></span>
     <div className='order-card-content'>
       <p>ID {order.id}</p>
       <h3>{order.address}</h3>
