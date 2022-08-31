@@ -1,42 +1,24 @@
 import axios from 'axios';
-import { BASE_URL, GET_ORDERS } from './constants'
+import { BASE_URL } from './constants'
 
-const requestClient = () => {
+const requestClient = (token = '') => {
   const defaultOptions = {
     baseURL: BASE_URL,
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': document.querySelector('[name="csrf-token"]').content
+      'X-CSRF-TOKEN': document.querySelector('[name="csrf-token"]').content,
+      'Authorization': `Bearer ${token}`
     },
   }
 
-   const clientInstance = axios.create(defaultOptions);
-
-   clientInstance.interceptors.request.use((config) => {
-     const token = localStorage.getItem('token');
-     config.headers.Authorization =  token ? `Bearer ${token}` : 'Bearer 1';
-
-     return config;
-   });
- 
-   return clientInstance;
+  return axios.create(defaultOptions);
 }
 
-export const getRequest = (url) => {
-  return requestClient().get(url);
+export const getRequest = (url, token) => {
+  return requestClient(token).get(url);
 } 
 
-export const postRequest = (url, data) => {
-  return requestClient().post(url, data);
-}
-
-export const fetchData = async (dispatch, action) => {
-  try {
-    const res = await getRequest(GET_ORDERS);
-
-    dispatch(action(res.data));
-  } catch (error) {
-    throw new Error('An error occurred during request', error);
-  }
+export const postRequest = (url, data, token) => {
+  return requestClient(token).post(url, data);
 }

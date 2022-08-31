@@ -16,6 +16,7 @@ const Home = () => {
   const [selectedFilter, setSelectedFilter] = useState(initialSelectedFilter)
   const [filteredOrders, setFilteredOrders] = useState(null)
 
+  const { token } = useSelector((state) => state.requester.value)
   const orders = useSelector(state => state.order.value)
   const dispatch = useDispatch();
   
@@ -48,7 +49,7 @@ const Home = () => {
       {Object.keys(filterState).map(current => {
         if (current === 'ready') return
 
-        return <option value={current}>{current}</option>
+        return <option key={`key-${current}`} value={current}>{current}</option>
       })}
     </>
   }
@@ -65,7 +66,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-        const res = await getRequest(GET_ORDERS);
+        const res = await getRequest(GET_ORDERS, token);
         
         dispatch(allOrders(res.data));
         for(let order of res.data) {
@@ -81,8 +82,7 @@ const Home = () => {
         setDateFilter(prevState => ({ ...prevState, ready: true }))
         setStatusFilter(prevState => ({ ...prevState, ready: true }))
     }
-    
-    fetchData(dispatch, allOrders);
+    fetchData();
   }, []);
   
   return <>
