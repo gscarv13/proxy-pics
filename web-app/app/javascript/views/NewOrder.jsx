@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { assignees as assigneesAction } from '../redux/features/requester'
+import { getRequest, postRequest } from '../helpers/requests';
+import { GET_ASSIGNEES, POST_ORDER } from '../helpers/constants';
 
-const NewOrder = ({ assigneeProps = [{ id: '123', name: 'placeholder'}] }) => {
-  const initialAddress = {
+const NewOrder = () => {
+  const initialFormState = {
     street_address: "",
     city: "",
     state: "",
@@ -9,7 +14,27 @@ const NewOrder = ({ assigneeProps = [{ id: '123', name: 'placeholder'}] }) => {
     assignee_id: "",
   }
 
-  const [formData, setFormData] = useState(initialAddress)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { token } = useSelector((state) => state.requester.value)
+  const assignees = useSelector((state) => state.requester.assignees)
+  const [formData, setFormData] = useState(initialFormState)
+
+  useEffect(() => {
+    const fetchData = async () => {
+        const res = await getRequest(GET_ASSIGNEES, token);
+        dispatch(assigneesAction(res.data));
+    }
+    fetchData();
+  }, []);
+
+ 
+  const handleChange = (e) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }))
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,20 +48,10 @@ const NewOrder = ({ assigneeProps = [{ id: '123', name: 'placeholder'}] }) => {
       },
       assignee_id: formData.assignee_id,
     }
-    console.log('submit!', formData);
-
-    postRequest('/api/orders/', requestBody)
-    
+    postRequest(POST_ORDER, requestBody, token)
+    setFormData(initialFormState)
+    navigate('/home')
   }
-
-  const handleChange = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }))
-  };
-
-
 
   return <>
     <h2>Create Order:</h2>
@@ -62,7 +77,7 @@ const NewOrder = ({ assigneeProps = [{ id: '123', name: 'placeholder'}] }) => {
           <select onChange={handleChange} type="text" placeholder="Select assignee" name="assignee_id" required >
             <option value="none" selected disabled hidden>Select assignee</option>
             {
-              assigneeProps.map((assignee) => <option value={assignee.id}>{assignee.name}</option>)
+              assignees.map((assignee) => <option key={`assignee-${assignee.id}`} value={assignee.id} >{assignee.name}</option>)
             }
           </select>
         </div>
