@@ -1,0 +1,13 @@
+{
+  "name": "app",
+  "private": "true",
+  "scripts": {
+    "web:dependencies": "cd web-app/ && yarn install && bundle install",
+    "db:setup": "rails db:create && rails db:migrate && rails db:seed",
+    "web:server": "./bin/dev",
+    "mobile:dependencies": "cd web-app/ && yarn install",
+    "mobile:server": "yarn start",
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack --config webpack.config.js --watch"
+  }
+}
