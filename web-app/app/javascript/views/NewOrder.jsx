@@ -5,15 +5,15 @@ import { assignees as assigneesAction } from '../redux/features/requester'
 import { getRequest, postRequest } from '../helpers/requests';
 import { GET_ASSIGNEES, POST_ORDER } from '../helpers/constants';
 
-const NewOrder = () => {
-  const initialFormState = {
-    street_address: "",
-    city: "",
-    state: "",
-    zip_code: "",
-    assignee_id: "",
-  }
+const initialFormState = {
+  street_address: "",
+  city: "",
+  state: "",
+  zip_code: "",
+  assignee_id: "",
+}
 
+const NewOrder = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { token } = useSelector((state) => state.requester.value)
@@ -22,11 +22,15 @@ const NewOrder = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      try {
         const res = await getRequest(GET_ASSIGNEES, token);
-        dispatch(assigneesAction(res.data));
+        dispatch(assigneesAction(res.data)); 
+      } catch (error) {
+        throw new Error(error)
+      }
     }
     fetchData();
-  }, []);
+  });
 
  
   const handleChange = (e) => {
@@ -48,12 +52,17 @@ const NewOrder = () => {
       },
       assignee_id: formData.assignee_id,
     }
-    postRequest(POST_ORDER, requestBody, token)
-    setFormData(initialFormState)
-    navigate('/home')
+    try {      
+      postRequest(POST_ORDER, requestBody, token)
+      setFormData(initialFormState)
+      navigate('/home')
+    } catch (error) {
+      throw new Error(error)
+    }
   }
 
-  return <>
+  return (
+    <>
     <h2>Create Order:</h2>
     <form onSubmit={handleSubmit}>
         <div>
@@ -84,6 +93,7 @@ const NewOrder = () => {
         <button type="submit" >Create Order</button>
     </form>
   </>
+  )
 }
 
 export default NewOrder;

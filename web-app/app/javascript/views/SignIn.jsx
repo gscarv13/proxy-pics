@@ -28,14 +28,16 @@ const SignIn = () => {
     }
   }
 
-  return <>
-    <div>
-      <form onSubmit={handleAuthentication} >
-        <input type="text" name="name" placeholder="Name" required />
-        <button type="submit">Sign In</button>
-      </form>
-    </div>
-  </>
+  return (
+    <>
+      <div>
+        <form onSubmit={handleAuthentication} >
+          <input type="text" name="name" placeholder="Name" value="admin" required />
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+    </>
+  )
 }
 
 export default SignIn;

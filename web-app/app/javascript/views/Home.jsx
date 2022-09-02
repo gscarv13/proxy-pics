@@ -66,6 +66,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      try {
         const res = await getRequest(GET_ORDERS, token);
         
         dispatch(allOrders(res.data));
@@ -81,9 +82,12 @@ const Home = () => {
         setStateFilter(prevState => ({ ...prevState, ready: true }))
         setDateFilter(prevState => ({ ...prevState, ready: true }))
         setStatusFilter(prevState => ({ ...prevState, ready: true }))
+      } catch (error) {
+        throw new Error(error)
+      }
     }
     fetchData();
-  }, []);
+  });
   
   return <>
     <div className="order-card-container">
