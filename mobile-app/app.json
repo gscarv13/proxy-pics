@@ -28,6 +28,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app need accesses to your camera to take pictures and submit it to Proxy Pics."
+        }
+      ]
+    ]
   }
 }
