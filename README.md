@@ -12,7 +12,7 @@
 
 - Yarn. More information [here](https://www.npmjs.com/package/yarn) 
 
-## Web App
+# Web App
 
 > <img src="./demo/webapp1.png" width="633" height="325" />
 > <img src="./demo/webapp2.png" width="633" height="325" />
@@ -73,6 +73,40 @@ To open the app on your phone it'll be necessary to install the expo app:
 - [IOS](https://apps.apple.com/app/apple-store/id982107779)
 
 and scan the QR code shown on the terminal
+
+## ⚠️ Important Note
+
+Setting the `BASE_URL` to `localhost` for the mobile app may not work. In that case an alternative is to use ngrok to forward your localhost.
+example:
+
+```
+# assuming Rails API is running on port 3000
+ngrok http 3000
+```
+
+Will launch the following:
+```
+Visit http://localhost:4040/ to inspect, replay, and modify your requests
+
+Session Status                online
+Account                       <your account>
+Version                       3.0.4
+Region                        South America (sa)
+Latency                       6ms
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    https://9491-2804-2cac-cccc-11b3-b0cc-fee1-38cf-3.sa.ngrok.io -> http://localhost:3000
+
+Connections                   ttl     opn     rt1     rt5     p50     p90                                                                                                                      
+                              0       0       0.00    0.00    0.00    0.00                                                                
+```
+
+Then use the ngrok url as `BASE_URL` on your `contansts.js` file
+
+```
+BASE_URL = https://9491-2804-2cac-cccc-11b3-b0cc-fee1-38cf-3.sa.ngrok.io
+```
+
+More information on [ngrok here](https://ngrok.com/)
 
 ## Authors
 
