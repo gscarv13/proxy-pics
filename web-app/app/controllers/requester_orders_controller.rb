@@ -20,9 +20,13 @@ class RequesterOrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    order = Order.find(params[:id])
 
-    render json: @order
+    if order 
+      render json: order
+    else
+      render json: { error: 'Order not found' }, status: :not_found
+    end
   end
 
   private

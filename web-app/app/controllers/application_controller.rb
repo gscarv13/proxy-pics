@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ActiveStorage::SetCurrent
+
   private
 
   def authenticate_requester

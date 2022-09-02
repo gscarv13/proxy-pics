@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   end
 
   def assignee
-    assignee = Assignment.find_by(assignee_params)
+    assignee = Assignee.find_by(assignee_params)
 
     if assignee
       render json: { token: assignee.id }
