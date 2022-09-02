@@ -32,7 +32,7 @@ const SignIn = () => {
     <>
       <div>
         <form onSubmit={handleAuthentication} >
-          <input type="text" name="name" placeholder="Name" value="admin" required />
+          <input type="text" name="name" placeholder="Name" required />
           <button type="submit">Sign In</button>
         </form>
       </div>

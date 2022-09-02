@@ -87,7 +87,7 @@ const Home = () => {
       }
     }
     fetchData();
-  });
+  }, []);
   
   return <>
     <div className="order-card-container">

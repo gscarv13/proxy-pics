@@ -24,7 +24,7 @@ const Order = () => {
     }
 
     fetchData()
-  })
+  }, [])
 
   return <>
     <h2>Show page</h2>

@@ -30,7 +30,7 @@ const NewOrder = () => {
       }
     }
     fetchData();
-  });
+  }, []);
 
  
   const handleChange = (e) => {
