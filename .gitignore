@@ -335,3 +335,6 @@ google-services.json
 *.hprof
 
 # End of https://www.toptal.com/developers/gitignore/api/rails,react,reactnative
+
+# ignore constants for React Native
+mobile-app/helpers/constants.js
