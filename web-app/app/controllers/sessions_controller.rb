@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     if assignee
       render json: { token: assignee.id }
     else
-     render json: { error: 'Invalid assignee' }, status: :unauthorized
+      render json: { error: 'Invalid assignee' }, status: :unauthorized
     end
   end
 
@@ -30,5 +30,4 @@ class SessionsController < ApplicationController
   def assignee_params
     params.require(:assignee).permit(:name)
   end
-
 end

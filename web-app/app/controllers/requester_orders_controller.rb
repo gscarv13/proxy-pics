@@ -7,7 +7,7 @@ class RequesterOrdersController < ApplicationController
     render json: orders
   end
 
-  def create 
+  def create
     assignee = Assignee.find(params[:assignee_id])
     address = Address.new(address_params)
     order = address.build_order(status: 'Pending', requester_id: @requester.id, assignee_id: assignee.id)
@@ -22,7 +22,7 @@ class RequesterOrdersController < ApplicationController
   def show
     order = Order.find(params[:id])
 
-    if order 
+    if order
       render json: order
     else
       render json: { error: 'Order not found' }, status: :not_found

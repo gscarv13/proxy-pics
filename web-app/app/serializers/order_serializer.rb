@@ -13,8 +13,7 @@ class OrderSerializer < ActiveModel::Serializer
 
   def images
     return [] unless object.images.attached?
-    
-    object.images.map {|image| { id:image.id, url: image.url} }
-  end
 
+    object.images.map { |image| { id: image.id, url: image.url } }
+  end
 end
